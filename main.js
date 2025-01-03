@@ -3,8 +3,8 @@
 // Esempio: let array = [1, 5 ,7 ,12]; Output = 25; 
 
 let numbers = [1, 5, 7, 12];
-let sommaArray = numbers.reduce((acc, num) => acc + num);
-console.log("La somma è " + sommaArray);
+let sommaArray = numbers.reduce((acc, num) => acc + num, 0);
+console.log(sommaArray);
 
 // ESERCIZIO 2:
 // Scrivi un programma che dato un array di numeri, restituisca in output la media e tutti i valori minori della media.
@@ -16,8 +16,8 @@ let somma = numbers2.reduce((acc,num)=>acc + num);
 let media = somma / numbers2.length;
 let valoriMinori = numbers2.filter(num => num < media);
 
-console.log("La media è: " + media);
-console.log("I valori minori sono: " + valoriMinori);
+console.log(media);
+console.log(valoriMinori);
 
 // ESERCIZIO 3:
 // Scrivi un programma che dati 2 array di 10 elementi interi casuali compresi tra 1 e 10, permetta di effettuare una delle seguenti operazioni:  addizione, sottrazione, moltiplicazione, divisione e di eseguire il calcolo tra ogni elemento dei due array, salvando ciascun risultato in un terzo array d’appoggio. 
@@ -33,10 +33,10 @@ let sottrazione1 = numbers3.map((num,i)=>num - numbers4[i]);
 let moltiplicazione1 = numbers3.map((num,i)=>num * numbers4[i]);
 let divisione1 = numbers3.map((num,i)=>num / numbers4[i]);
 
-console.log(somma1)
-console.log(sottrazione1)
-console.log(moltiplicazione1)
-console.log(divisione1)
+console.log(somma1);
+console.log(sottrazione1);
+console.log(moltiplicazione1);
+console.log(divisione1);
 
 //ESERCIZIO 4:
 //Scrivere un programma che permetta di filtrare soltanto le parole all'interno di un array:
@@ -78,3 +78,41 @@ let smartphone = {
 
 smartphone.mostraContatti();
 smartphone.rimuoviContatto("Antonio");
+
+
+// **ESERCIZIO 1:**
+
+// Realizzare un oggetto che rappresenti un garage: 
+
+// - Dovrà contenere una lista di automobili. Ciascuna automobile dovrà avere una marca (es. Fiat) ed un modello (es. Panda). 
+
+// - Scrivere un metodo che prenda in input una marca e stampi i modelli presenti nel garage di quella stessa marca.
+
+const garage = {
+    automobili: [],
+
+    aggiungiAutomobile: function (marca, modello) {
+        this.automobili.push({ marca, modello });
+    },
+
+    stampaModelliPerMarca: function (marca) {
+        const modelli = this.automobili
+            .filter(auto => auto.marca.toLowerCase() === marca.toLowerCase())
+            .map(auto => auto.modello);
+
+        if (modelli.length > 0) {
+            console.log(`Modelli della marca ${marca}: ${modelli.join(', ')}`);
+        } else {
+            console.log(`Nessun modello della marca ${marca} trovato nel garage.`);
+        }
+    }
+};
+
+garage.aggiungiAutomobile("Fiat", "Panda");
+garage.aggiungiAutomobile("Fiat", "500");
+garage.aggiungiAutomobile("Toyota", "Corolla");
+garage.aggiungiAutomobile("Ford", "Focus");
+
+garage.stampaModelliPerMarca("Fiat");
+garage.stampaModelliPerMarca("Toyota");
+garage.stampaModelliPerMarca("BMW");
